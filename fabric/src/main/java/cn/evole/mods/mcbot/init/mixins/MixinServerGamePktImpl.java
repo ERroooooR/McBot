@@ -24,7 +24,7 @@ public abstract class MixinServerGamePktImpl {
     //#if MC < 11700
     @Shadow
     public ServerPlayer player;
-    @Inject(method = "handleChat(Ljava/lang/String;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/players/PlayerList;broadcastMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V", shift = At.Shift.BEFORE))
+    @Inject(method = "handleChat(Ljava/lang/String;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/players/PlayerList;broadcastChatMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/ChatType;Ljava/util/UUID;)V", shift = At.Shift.BEFORE))
     public void handleChat(String string, CallbackInfo ci) {
         IEvents.SERVER_CHAT.invoker().onChat(this.player, string);
     }
